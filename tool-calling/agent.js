@@ -1,6 +1,20 @@
 import { Agent, run } from "@openai/agents";
+import { z } from "zod";
 import { getWeatherTool, sendEmailTool } from "./tools.js";
 
+/**
+ * Agent output structor
+ */
+const WeatherOutputSchema = z.object({
+    city: z.string().describe("city name"),
+    degree_c: z.number().describe("degree celcius of the temprature"),
+    condition: z.string().optional().describe("condition of the weather"),
+    to_email: z.string().optional().describe("email address to send weather data")
+});
+
+/**
+ * Agent
+ */
 const agent = new Agent({
     name: "Weather Agent",
     instructions: `You are a helpful weather assistant.
@@ -27,7 +41,12 @@ const agent = new Agent({
 
     Be friendly, accurate, and efficient.`,
     tools: [getWeatherTool, sendEmailTool],
+    outputType: WeatherOutputSchema,
 });
 
-const response = await run(agent, "what is the weather of kolkata? and then send weather details to mondalpritam777888999@gmail.com");
-console.log(`Agent: ${response.finalOutput}`);
+// const response = await run(agent, "what is the weather of kolkata? and then send weather details to mondalpritam777888999@gmail.com");
+
+const response = await run(agent, "what is the weather of delhi, kolkata, and mumbai? and then send all weather to mondalpritam777888999@gmail.com");
+
+// console.log(`Agent: ${response.finalOutput}`);
+console.log("Agent Structor Output: ", response.finalOutput);
