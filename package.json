@@ -5,14 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node --env-file=.env index.js",
-    "tool-calling": "node --env-file=.env tool-calling/agent.js"
+    "tool-calling": "node --env-file=.env tool-calling/agent.js",
+    "manager": "node --env-file=.env multi-agent/agent_manager.js"
   },
-  "keywords": [
-    "agent",
-    "llm",
-    "tools",
-    "openai"
-  ],
   "author": "arijit mondal",
   "license": "ISC",
   "type": "module",
