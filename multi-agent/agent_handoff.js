@@ -1,4 +1,5 @@
 import { Agent, tool, run } from "@openai/agents";
+import { RECOMMENDED_PROMPT_PREFIX } from "@openai/agents-core/extensions";
 import z from "zod";
 import fs from "node:fs/promises";
 
@@ -43,15 +44,23 @@ const getAvailablePlansTool = tool({
 const salesAgent = new Agent({
     name: "salesAgent",
     instructions: `You are an expert sales agent for an internet broadband comapny. Talk to the user and help them with what they need.`,
-    tools: [
-        getAvailablePlansTool,
-        // here we connect another as a tool
-        refundAgent.asTool({
-            toolName: "refund_expert",
-            toolDescription: "Help customer to refund thir plan."
-        })
-    ],
+    tools: [getAvailablePlansTool],
 });
 
-const res = await run(salesAgent, "I had a plan for refund how can i and process? customer ID cus_12345, reason currently im having 28 days plan and now i want to increse my plan.");
-console.log(`Agent: ${res.finalOutput}`);
+/**
+ * @ReceptionAgent handle handoff's
+ */
+const receptionAgent = new Agent({
+    name: "Reception Agent",
+    instructions: `${RECOMMENDED_PROMPT_PREFIX}  You are the customer facing agent expert in understanding what customer needs and then route them or handoff them to the right agent.`,
+    handoffDescription: `You have two agents available:
+    - salesAgent: Expert in handling queries like all plans and pricing available. Good for new customers.
+    - refundAgent: Expert in handling customer's refund processes.
+    `,
+    handoffs: [salesAgent, refundAgent],
+});
+
+const res = await run(receptionAgent, "hey i had a plan for refound because i had a plan for buy more better plan, here is my id cust_1234");
+
+console.log(`Agent: `, res.finalOutput);
+console.log("History: ", res.history);
