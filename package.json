@@ -4,7 +4,8 @@
   "description": "Building AI Agents with Typescript and OpenAI Agent SDK.",
   "main": "index.js",
   "scripts": {
-    "start": "node --env-file=.env --watch index.js"
+    "start": "node --env-file=.env index.js",
+    "tool-calling": "node --env-file=.env tool-calling/agent.js"
   },
   "keywords": [
     "agent",
@@ -17,6 +18,8 @@
   "type": "module",
   "dependencies": {
     "@openai/agents": "^0.4.10",
+    "axios": "^1.13.5",
+    "nodemailer": "^8.0.1",
     "zod": "^4.3.6"
   }
 }
