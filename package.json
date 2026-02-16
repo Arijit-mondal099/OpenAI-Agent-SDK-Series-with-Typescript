@@ -1,0 +1,13 @@
+{
+  "name": "agent",
+  "version": "1.0.0",
+  "description": "Building AI Agents with Typescript and OpenAI Agent SDK.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["agent", "llm", "tools", "openai"],
+  "author": "arijit mondal",
+  "license": "ISC",
+  "type": "module"
+}
