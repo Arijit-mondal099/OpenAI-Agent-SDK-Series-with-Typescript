@@ -64,7 +64,7 @@ const stockMarketGuardrail = {
         const res = await isStockMarketRelatedQuery(input);
         return {
             outputInfo: res.reasoning,
-            tripwireTriggered: !res.isValidQuery,
+            tripwireTriggered: !res.isValidQuery ?? true,
         }
     }
 }
