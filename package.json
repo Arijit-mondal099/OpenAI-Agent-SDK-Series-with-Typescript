@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node --env-file=.env index.js",
     "tool-calling": "node --env-file=.env tool-calling/agent.js",
-    "manager": "node --env-file=.env multi-agent/agent_manager.js"
+    "manager": "node --env-file=.env multi-agent/agent_manager.js",
+    "handoff": "node --env-file=.env multi-agent/agent_handoff.js"
   },
   "author": "arijit mondal",
   "license": "ISC",
