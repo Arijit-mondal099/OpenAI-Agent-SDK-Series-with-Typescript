@@ -11,7 +11,8 @@
     "input_guard": "node --env-file=.env guardrails/input_guardrail.js",
     "output_guard": "node --env-file=.env guardrails/output_guardrail.js",
     "conversation": "node --env-file=.env conversations.js",
-    "run-time-ctx": "npx tsx --env-file=.env run-time-ctx.ts"
+    "run-time-ctx": "npx tsx --env-file=.env run-time-ctx.ts",
+    "streaming": "npx tsx --env-file=.env streaming.ts"
   },
   "author": "arijit mondal",
   "license": "ISC",
