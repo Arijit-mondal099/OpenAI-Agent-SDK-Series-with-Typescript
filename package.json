@@ -9,7 +9,8 @@
     "manager": "node --env-file=.env multi-agent/agent_manager.js",
     "handoff": "node --env-file=.env multi-agent/agent_handoff.js",
     "input_guard": "node --env-file=.env guardrails/input_guardrail.js",
-    "output_guard": "node --env-file=.env guardrails/output_guardrail.js"
+    "output_guard": "node --env-file=.env guardrails/output_guardrail.js",
+    "conversation": "node --env-file=.env conversations.js"
   },
   "author": "arijit mondal",
   "license": "ISC",
